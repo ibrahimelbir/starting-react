@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 const PokemonRow = ({ pokemon, onClick }) => (
   
-    <tr key={pokemon.id}>
+    <tr>
       <td>{pokemon.name.english}</td>
       <td>{pokemon.type.join(", ")}</td>
       <td>

@@ -3,7 +3,7 @@ import PokemonType from "../PokemonType";
 import PokemonContext from "../PokemonContext";
 
 const PokemonInfo = () => {
-  const { selectedPokemon } = React.useContext(PokemonContext);
+  const { state: {selectedPokemon} } = React.useContext(PokemonContext);
   return selectedPokemon ? (
   <div>
     <h2>{selectedPokemon.name.english}</h2>

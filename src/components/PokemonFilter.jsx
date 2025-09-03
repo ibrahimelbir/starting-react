@@ -9,12 +9,14 @@ const Input = styled.input`
 `;
 
 const PokemonFilter = () => {
-  const {filter, filterSet} = React.useContext(PokemonContext);
+  const {state : {filter},dispatch} = React.useContext(PokemonContext);
   return (
     <Input
       type="text"
       value={filter}
-      onChange={(evt) => filterSet(evt.target.value)}
+      onChange={(evt) => dispatch({
+        type: 'SET_FILTER',
+        payload: evt.target.value})}
       placeholder="Search Pokémon..."
     />
   );
