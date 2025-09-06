@@ -1,25 +1,20 @@
 import React from "react";
 import PokemonRow from "./PokemonRow";
-import useStore from "../store";
+import store from "../store";
+import { observer } from "mobx-react";
 
 const PokemonTable = () => {
-  
-  const pokemon = useStore((state) => state.pokemon);
-  const filter = useStore((state) => state.filter);
-  const setSelectedPokemon = useStore((state) => state.setSelectedPokemon);
-
   return (
     <table width="100%">
       <tbody>
-        {pokemon
-          .filter(({ name: { english } }) => english.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
+        {store.filteredPokemon
           .slice(0, 20)
           .map((pokemon) => (
-            <PokemonRow key={pokemon.id} pokemon={pokemon} onClick={(pokemon) => setSelectedPokemon(pokemon)} />
+            <PokemonRow key={pokemon.id} pokemon={pokemon} onClick={(pokemon) => store.setSelectedPokemon(pokemon)} />
           ))}
       </tbody>
     </table>
   );
 };
 
-export default PokemonTable;
+export default observer(PokemonTable);
